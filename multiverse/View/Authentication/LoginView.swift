@@ -21,23 +21,29 @@ struct LoginView: View {
         
         NavigationView {
             VStack {
+                Image("image1")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300, height: 300, alignment: .center)
+                
                 VStack(alignment: .leading,spacing:3) {
-                    Image("image1")
-                        .resizable()
-                        .scaledToFit()
+                   
                    
                     Text("Welcome To")
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                     Text("Multiverse")
                         .font(.system(size: 35, weight: .heavy, design: .rounded)).foregroundColor(Color(red: 0.295, green: 0.428, blue: 0.395))
-                   
                     
-                    //TEXFIELD & SECURED FIELD
                     
-                    VStack{
+                    //TEXFIELD
+                    
+                    VStack(spacing: 15.0){
                         
-                        TextField("Email",text: $email )
-                        SecureField("Password", text: $password)
+                        CustomTextFied(imageName: "envelope", placeholderText: "Email", isSecureField: false, text: $email)
+                       
+                        //SECURED FIELD
+                        CustomTextFied(imageName: "lock", placeholderText: "Password", isSecureField: true, text: $password)
+                       
                         
                         
                         
@@ -91,7 +97,7 @@ struct LoginView: View {
                             .foregroundColor(.black)
                         Text("SignUp").fontWeight(.heavy).foregroundColor(Color(red: 0.309, green: 0.448, blue: 0.411))
                         
-                    }.padding(.horizontal,30)
+                    }.padding(.horizontal,30).padding(.bottom,10)
                 
                 
                 
@@ -109,4 +115,31 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+}
+
+struct  CustomTextFied: View {
+    let imageName : String
+    let placeholderText: String
+    let isSecureField:Bool
+    @Binding var text: String
+    
+    var body: some View {
+        VStack(spacing: 16.0) {
+            HStack {
+                Image(systemName: imageName).foregroundColor(.gray)
+                if isSecureField{
+                    SecureField(placeholderText, text: $text)
+                }else{
+                    TextField(placeholderText,text: $text)
+                }
+                
+                
+               
+            }
+            
+            
+            Divider()
+                .padding(.bottom,10)
+        }
+    }
 }
