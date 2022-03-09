@@ -39,10 +39,10 @@ struct LoginView: View {
                     
                     VStack(spacing: 15.0){
                         
-                        CustomTextFied(imageName: "envelope", placeholderText: "Email", isSecureField: false, text: $email)
+                        CustomTextField(imageName: "envelope", placeholderText: "Email", isSecureField: false, text: $email)
                        
                         //SECURED FIELD
-                        CustomTextFied(imageName: "lock", placeholderText: "Password", isSecureField: true, text: $password)
+                        CustomTextField(imageName: "lock", placeholderText: "Password", isSecureField: true, text: $password)
                        
                         
                         
@@ -85,16 +85,16 @@ struct LoginView: View {
                         .frame(width: 340, height: 50)
                         .background(Color(red: 0.309, green: 0.448, blue: 0.411))
                         .cornerRadius(13)
-                }
+                }.padding(.bottom,50)
                /// END OF BUTTON
-                
+              
                 //SIGN UP
                 NavigationLink(destination: RegistrationView()) {
-                    
+                   
                     HStack{
                        
                         Text("Dont Have Account!").font(.subheadline)
-                            .foregroundColor(.black)
+                            .foregroundColor(.gray)
                         Text("SignUp").fontWeight(.heavy).foregroundColor(Color(red: 0.309, green: 0.448, blue: 0.411))
                         
                     }.padding(.horizontal,30).padding(.bottom,10)
@@ -106,8 +106,9 @@ struct LoginView: View {
                 
                 
                 
+     
         }.padding(.top,-79)
-    }
+    } .navigationBarBackButtonHidden(true)
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -115,31 +116,4 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
-}
-
-struct  CustomTextFied: View {
-    let imageName : String
-    let placeholderText: String
-    let isSecureField:Bool
-    @Binding var text: String
-    
-    var body: some View {
-        VStack(spacing: 16.0) {
-            HStack {
-                Image(systemName: imageName).foregroundColor(.gray)
-                if isSecureField{
-                    SecureField(placeholderText, text: $text)
-                }else{
-                    TextField(placeholderText,text: $text)
-                }
-                
-                
-               
-            }
-            
-            
-            Divider()
-                .padding(.bottom,10)
-        }
-    }
 }
