@@ -34,7 +34,7 @@ struct RegistrationView: View {
                
                 
                 //TEXFIELD
-                
+             
                 VStack(spacing: 32){
                    
                     //EMAIL
