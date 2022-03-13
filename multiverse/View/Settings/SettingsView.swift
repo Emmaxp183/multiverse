@@ -9,7 +9,25 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text("SettingsView")
+        ZStack {
+            Color(.systemGroupedBackground).ignoresSafeArea()
+            
+            
+            VStack{
+                //SETTINGS
+                SettingsHeaderView()
+                
+                VStack(spacing: -7.0) {
+            ForEach(SettingsCellViewModel.allCases, id: \.self) { insertViewModel in
+                        SettingsCellView(insertViewModel:insertViewModel)
+                    }
+                }.cornerRadius(17).padding()
+                
+                
+                SettingsButtonView()
+                Spacer()
+            }
+        }
     }
 }
 

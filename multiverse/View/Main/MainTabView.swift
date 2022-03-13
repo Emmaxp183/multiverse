@@ -13,14 +13,14 @@ struct MainTabView: View {
     
     var body: some View {
         NavigationView {
-            TabView (selection : $SelectedIndex){
+            TabView(selection : $SelectedIndex){
                 ChatView()
                     .onTapGesture{
                         SelectedIndex = 0
                     }
                     .tabItem {
                         Image(systemName: "ellipsis.bubble")
-                        
+                        Text("Chat")
                     }
                     .tag(0)
                 ChannelView()
@@ -29,7 +29,7 @@ struct MainTabView: View {
                     }
                     .tabItem {
                         Image(systemName: "person.3")
-                     
+                        Text("Channel")
                     }
                     .tag(1)
                 NewFeedView()
@@ -38,7 +38,8 @@ struct MainTabView: View {
                     }
                     .tabItem {
                         Image(systemName: "list.bullet.rectangle")
-                       
+                        
+                        Text("News Feed")
                     }
                     .tag(2)
            
@@ -48,6 +49,7 @@ struct MainTabView: View {
                     }
                 .tabItem {
                     Image(systemName: "gearshape")
+                    Text("Settings")
                     
                 
             }
