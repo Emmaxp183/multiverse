@@ -15,7 +15,8 @@ struct SettingsView: View {
             
             VStack{
                 //SETTINGS
-                SettingsHeaderView()
+                NavigationLink(destination: EditProfileView(), label:  {SettingsHeaderView()})
+               
                 
                 VStack(spacing: -7.0) {
             ForEach(SettingsCellViewModel.allCases, id: \.self) { insertViewModel in
