@@ -23,9 +23,11 @@ struct EditProfileView: View {
                 
                 HeaderProfileView()
            
-           
+                //STATUS VIEW
                 Text("Status").bold().foregroundColor(.gray).padding(.leading,20)
-                NavigationLink(destination: Text("Edit Status"), label: {
+                NavigationLink(destination: StatusSelectorView(), label: {
+                   
+                    
                     
                     HStack {
                         Text("At the movie").bold().foregroundColor(.black)
