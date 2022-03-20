@@ -11,6 +11,9 @@ struct EditProfileView: View {
    //PROPERTIES
     @State var fullName = "Emmanuel Mensah"
     
+    //IMAGE PICKER
+    @State var ShowImagePicker =  false
+    
     
     var body: some View {
        //HEADER PROFILE
@@ -72,6 +75,13 @@ struct EditProfileView_Previews: PreviewProvider {
 
 struct HeaderProfileView: View {
     @State var fullName = "Emmanuel Mensah"
+    
+    //IMAGE PICKER
+    @State var ShowImagePicker =  false
+    
+    //IMAGE PROPERTIE
+    @State private var selectedImage:UIImage?
+   
     var body: some View {
         VStack{
             //HEADER
@@ -80,7 +90,9 @@ struct HeaderProfileView: View {
                     
                     
                     // EDIT PROFILE PICTURE
-                    Button(action:{}){
+                    Button(action:{
+                        ShowImagePicker.toggle()
+                    }){
                         
                         VStack {
                             Image(systemName: "plus.circle.fill")
@@ -92,6 +104,10 @@ struct HeaderProfileView: View {
                         
                         
                         
+                        
+                    }.sheet(isPresented: $ShowImagePicker){
+                        
+                        ImagePicker(image: $selectedImage)
                         
                     }
                     
@@ -116,7 +132,7 @@ struct HeaderProfileView: View {
                 
                 
                 TextField("",text: $fullName).font(.system(size: 22, weight: .bold, design: .rounded)).multilineTextAlignment(.center)
-                
+                    .foregroundColor(.black)
                 
                 
                 
