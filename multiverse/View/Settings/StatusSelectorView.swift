@@ -19,12 +19,7 @@ struct StatusSelectorView: View {
                         .foregroundColor(.gray)
                         .padding()
                    
-                    HStack{
-                        
-                        Text("Available")
-                        Spacer()
-                        
-                    }.padding().background(Color.white)
+                    StatusCell(viewModel: StatusViewModel(rawValue: 0)!)
                     
                   
                     
@@ -33,17 +28,17 @@ struct StatusSelectorView: View {
                         .padding()
                     
                     //LOOPING
-                    ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                 
+                    ForEach(StatusViewModel.allCases.filter({$0 != .notConfigured}), id: \.self ) { viewModel in
                         VStack(spacing: 2.0) {
                             Divider()
-                            HStack{
+                          
+                            Button(action : {}){
                                 
-                                Text("Available")
-                                    .padding()
-                                    Spacer()
+                                StatusCell(viewModel: viewModel)
                                 
-                            }.background(Color.white)
-                           
+                            }
+                            
                         }
                     }
                     
@@ -66,5 +61,19 @@ struct StatusSelectorView: View {
 struct StatusSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         StatusSelectorView()
+    }
+}
+
+struct StatusCell : View {
+    let viewModel : StatusViewModel
+    var body: some View {
+        HStack{
+            
+            Text(viewModel.title)
+                .foregroundColor(.black)
+                .bold()
+            Spacer()
+            
+        }.padding().background(Color.white)
     }
 }
