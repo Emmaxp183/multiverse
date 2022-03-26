@@ -14,10 +14,18 @@ struct NewMessageView: View {
     //DISMISS TO MESSAGE VIEW
    
     @Environment(\.presentationMode)var mode
+    @State private var SearchBarText = ""
+    
+    @State private var isEditing = false
     
     var body: some View {
         
         ScrollView{
+            
+            SearchBar(text : $SearchBarText, isEditing: $isEditing)
+                .onTapGesture {isEditing.toggle()}
+                .padding()
+            
             VStack(alignment: .leading){
                 
                
