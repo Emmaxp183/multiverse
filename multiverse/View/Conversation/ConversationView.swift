@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ConversationView: View {
+    
+    @State private var showNewMessageView = false
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Color(.systemGroupedBackground).ignoresSafeArea()
@@ -33,14 +35,14 @@ struct ConversationView: View {
                 
             }
       
-            Button(action:{}){
+            Button(action:{showNewMessageView.toggle()}){
                 Image(systemName: "square.and.pencil")
                     .resizable().scaledToFit()
                     .foregroundColor(.white)
                     .frame(width: 24, height: 24)
                     .padding()
                 
-            }.background(Color.accentColor).clipShape(Circle()).padding()
+            }.background(Color.accentColor).clipShape(Circle()).padding().sheet(isPresented: $showNewMessageView, content: {NewMessageView()})
             
         
         
