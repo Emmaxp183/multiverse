@@ -10,9 +10,13 @@ import SwiftUI
 struct ConversationView: View {
     
     @State private var showNewMessageView = false
+    @State private var showChatView = false
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Color(.systemGroupedBackground).ignoresSafeArea()
+            
+            NavigationLink(destination: ChatView(), isActive: $showChatView, label: {})
            
             
             ScrollView{
@@ -42,7 +46,7 @@ struct ConversationView: View {
                     .frame(width: 24, height: 24)
                     .padding()
                 
-            }.background(Color.accentColor).clipShape(Circle()).padding().sheet(isPresented: $showNewMessageView, content: {NewMessageView()})
+            }.background(Color.accentColor).clipShape(Circle()).padding().sheet(isPresented: $showNewMessageView, content: {NewMessageView(showChatView: $showChatView)})
             
         
         

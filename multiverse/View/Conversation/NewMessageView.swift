@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct NewMessageView: View {
+    //PROPERTIES CONNECTED TO THE NEW MESSAGE VIEW
+   
+    @Binding var showChatView: Bool
+    //DISMISS TO MESSAGE VIEW
+   
+    @Environment(\.presentationMode)var mode
+    
     var body: some View {
         
         ScrollView{
@@ -15,8 +22,21 @@ struct NewMessageView: View {
                 
                
                 ForEach((0 ..< 10), id : \.self ){ _ in
-                    UserCell()
-                        .padding(.horizontal)
+                   
+                    //CHANGED  CHAT LIST TO BUTTONS
+                    Button(action:{
+                        showChatView.toggle()
+                        mode.wrappedValue.dismiss()
+                               
+                    }){
+                       
+                        UserCell()
+                            .padding(.horizontal)
+                        
+                        
+                    }
+                    
+                    
                 }
                 
                 
@@ -28,6 +48,6 @@ struct NewMessageView: View {
 
 struct NewMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        NewMessageView()
+        NewMessageView(showChatView: .constant(true))
     }
 }

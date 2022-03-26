@@ -24,10 +24,11 @@ struct UserCell: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     
-                    
-                }
-            }
-            Divider()
+             }
+            Spacer()
+          
+            }.foregroundColor(.black)
+      
         }
     }
 }
