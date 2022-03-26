@@ -9,7 +9,42 @@ import SwiftUI
 
 struct ConversationView: View {
     var body: some View {
-        Text("ConversationView")
+        ZStack(alignment: .bottomTrailing) {
+            Color(.systemGroupedBackground).ignoresSafeArea()
+           
+            
+            ScrollView{
+                VStack(alignment: .leading){
+                    
+                   
+                    ForEach((0 ..< 10), id : \.self ){ _ in
+                        ConversationCell()
+                            .padding(.horizontal)
+                    }
+                    
+                    
+                }.padding(.top)
+                
+                
+                
+                
+                
+                
+                
+            }
+      
+            Button(action:{}){
+                Image(systemName: "square.and.pencil")
+                    .resizable().scaledToFit()
+                    .foregroundColor(.white)
+                    .frame(width: 24, height: 24)
+                    .padding()
+                
+            }.background(Color.accentColor).clipShape(Circle()).padding()
+            
+        
+        
+        }//END OF ZSTACK
     }
 }
 

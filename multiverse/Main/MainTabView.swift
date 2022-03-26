@@ -14,7 +14,8 @@ struct MainTabView: View {
     var body: some View {
         NavigationView {
             TabView(selection : $SelectedIndex){
-                ChatView()
+                
+                ConversationView()
                     .onTapGesture{
                         SelectedIndex = 0
                     }
@@ -54,7 +55,9 @@ struct MainTabView: View {
                 
             }
                 .tag(3)
-            }
+                
+            }.tabViewStyle(DefaultTabViewStyle())
+           
             
                 .navigationTitle(tabTitle)
         }
