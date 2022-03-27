@@ -13,7 +13,8 @@ struct NewMessageView: View {
     @Binding var showChatView: Bool
     //DISMISS TO MESSAGE VIEW
    
-    @Environment(\.presentationMode)var mode
+    @Environment(\.presentationMode) var mode
+    
     @State private var SearchBarText = ""
     
     @State private var isEditing = false
@@ -29,7 +30,7 @@ struct NewMessageView: View {
             VStack(alignment: .leading){
                 
                
-                ForEach((0 ..< 10), id : \.self ){ _ in
+                ForEach((0...10), id : \.self ){ _ in
                    
                     //CHANGED  CHAT LIST TO BUTTONS
                     Button(action:{

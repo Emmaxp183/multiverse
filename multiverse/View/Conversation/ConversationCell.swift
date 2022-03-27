@@ -28,7 +28,7 @@ struct ConversationCell: View {
                 }
             }
             Divider()
-        }
+        }.foregroundColor(.black)
     }
 }
 

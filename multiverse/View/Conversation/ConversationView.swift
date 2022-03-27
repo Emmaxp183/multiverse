@@ -23,14 +23,14 @@ struct ConversationView: View {
                 VStack(alignment: .leading){
                     
                    
-                    ForEach((0 ..< 10), id : \.self ){ _ in
-                        ConversationCell()
-                            .padding(.horizontal)
+                    ForEach((0...10), id : \.self ){ _ in
+                        //ConversationCell()
+                        NavigationLink(destination: ChatView(), label:{ ConversationCell()})
+                           
                     }
                     
                     
-                }.padding(.top)
-                
+                }.padding(.top) .padding(.horizontal)
                 
                 
                 
