@@ -9,12 +9,13 @@ import SwiftUI
 
 struct MessageVeiw: View {
     var isFromCurrentUser :Bool
+    var messageText: String
    
     var body: some View {
         HStack {
             if isFromCurrentUser{
                 Spacer()
-                Text("i love my wife ")
+                Text(messageText)
                     .padding(12)
                     .background(Color.blue)
                     .font(.system(size: 15))
@@ -32,7 +33,7 @@ struct MessageVeiw: View {
                         .frame(width: 32, height: 32)
                         .clipShape(Circle())
                    
-                    Text("i love my wife ")
+                    Text(messageText)
                         .padding(12)
                         .background(Color(.systemGray5))
                         .font(.system(size: 15))
@@ -45,11 +46,5 @@ struct MessageVeiw: View {
                 
             }
         }
-    }
-}
-
-struct MessageVeiw_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageVeiw(isFromCurrentUser: true)
     }
 }
