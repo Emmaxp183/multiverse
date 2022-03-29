@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct multiverseApp: App {
+    
+    init(){
+        FirebaseApp.configure()
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            LoginView()
         }
     }
 }

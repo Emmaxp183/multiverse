@@ -5,16 +5,18 @@
 //  Created by admin on 08/03/2022.
 //
 
+import Firebase
 import SwiftUI
 
 struct RegistrationView: View {
     
     //PROPERTIES
     @State var email : String = ""
-    @State var Username : String = ""
+    @State var username : String = ""
     @State var fullname : String = ""
     @State var password : String = ""
     @Environment(\.presentationMode) var mode
+    @ObservedObject var viewModel = AuthViewModel()
     
     var body: some View {
        
@@ -41,7 +43,7 @@ struct RegistrationView: View {
                     CustomTextField(imageName: "envelope", placeholderText: "Email", isSecureField: false, text: $email)
                    
                     //USERNAME
-                    CustomTextField(imageName: "person.text.rectangle", placeholderText: "Username", isSecureField: false, text: $Username)
+                    CustomTextField(imageName: "person.text.rectangle", placeholderText: "Username", isSecureField: false, text: $username)
                    
                     //FULL NAME
                     CustomTextField(imageName: "person", placeholderText: "Full name", isSecureField: false, text: $fullname)
@@ -60,9 +62,11 @@ struct RegistrationView: View {
               
           
             }.padding()
-            
            
-            Button(action:{}){
+            Button(action:{
+                viewModel.register(withEmail: email, password: password, fullname: fullname, username: username)
+              
+            }){
                 
                 Text("Sign Up").fontWeight(.bold)
                     .foregroundColor(.white)
