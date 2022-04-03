@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+
 struct LoginView: View {
     //LOGIN PROPERTIES
     @State var email : String = ""
     @State var password : String = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     
     
     

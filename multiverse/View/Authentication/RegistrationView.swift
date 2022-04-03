@@ -16,11 +16,11 @@ struct RegistrationView: View {
     @State var fullname : String = ""
     @State var password : String = ""
     @Environment(\.presentationMode) var mode
-    @ObservedObject var viewModel = AuthViewModel()
-    
+    @EnvironmentObject var viewModel: AuthViewModel
     var body: some View {
        
         VStack {
+            NavigationLink(destination: ProfilePhotoSelectorView(), isActive: $viewModel.didAuthenticateUser, label: {})
             
             
             VStack(alignment: .leading,spacing:3) {

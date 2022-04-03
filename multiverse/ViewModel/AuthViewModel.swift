@@ -5,9 +5,20 @@
 //  Created by admin on 29/03/2022.
 //
 import Firebase
-import Foundation
+
+import UIKit
 
 class AuthViewModel: NSObject, ObservableObject{
+  
+    @Published var didAuthenticateUser = false
+    @Published var userSession: FirebaseAuth.User?
+    private var tempCurrentUser : FirebaseAuth.User?
+    
+    override init(){
+        userSession = Auth.auth().currentUser
+        
+        
+    }
     
     func login(){
         
@@ -28,10 +39,13 @@ class AuthViewModel: NSObject, ObservableObject{
             }
                //USER DATA FOR FIRESTORE
             guard let user = results?.user else {return}
+            self.tempCurrentUser = user
             let data : [String: Any] = ["email":email,"username":username,"fullname":fullname]
             
             Firestore.firestore().collection("user").document(user.uid).setData(data){ _ in
-                print("DEBUG: Succesfully updated user info in firestore")
+               
+                
+                self.didAuthenticateUser = true
                 
                 
                 
@@ -42,7 +56,18 @@ class AuthViewModel: NSObject, ObservableObject{
     }
    
     
-    func uploadProfileImage(){
+    func uploadProfileImage(_ image : UIImage){
+        guard let uid = tempCurrentUser?.uid else {
+           
+            print("DEBUG: Faild to set temp current user...")
+            return
+            
+        }
+               ImageUploader.uploadImage(image: image) { imageUrl in
+               Firestore.firestore().collection("users").document(uid).updateData(["profileImageUrl" : imageUrl]) { _ in
+                print("DEBUG: Succesfully updated user date...")
+            }
+        }
         
     }
    
