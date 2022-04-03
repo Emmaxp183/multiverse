@@ -24,14 +24,14 @@ struct ProfilePhotoSelectorView: View {
                         .frame(width: 180, height: 180)
                         .clipShape(Circle())
                 } else {
-                    Image("plus_photo")
+                   Image(systemName: "person.crop.circle.fill")
                         .resizable()
                         .renderingMode(.template)
                         .scaledToFill()
                         .frame(width: 180, height: 180)
                         .clipped()
                         .padding(.top, 44)
-                        .foregroundColor(.black)
+                        .foregroundColor(.gray)
                 }
             })
             .sheet(isPresented: $imagePickerPresented,
@@ -40,22 +40,19 @@ struct ProfilePhotoSelectorView: View {
             })
             
             Text(profileImage == nil ? "Select a profile photo" : "Great! Tap below to continue")
-                .font(.system(size: 20, weight: .semibold))
+                .font(.system(size: 20, weight: .semibold)).padding()
             
             if let image = selectedImage {
-                Button(action: {
+                Button(action:{
                     viewModel.uploadProfileImage(image)
-                }, label: {
-                    Text("Continue")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 340, height: 50)
-                        .background(Color.blue)
-                        .clipShape(Capsule())
+                    
+                }){
+                    
+                    Text("Continue").foregroundColor(.white).bold()
+                        .frame(maxWidth: .infinity)
                         .padding()
-                })
-                .shadow(color: .gray, radius: 10, x: 0.0, y: 0.0)
-                .padding(.top, 24)
+                    
+                }.background(Color(red: 0.3, green: 0.439, blue: 0.403)).cornerRadius(15).padding()
             }
             
             Spacer()

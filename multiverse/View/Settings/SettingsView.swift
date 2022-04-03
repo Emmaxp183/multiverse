@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+   
     var body: some View {
         ZStack {
             Color(.systemGroupedBackground).ignoresSafeArea()

@@ -80,7 +80,10 @@ struct LoginView: View {
                 
                 ///BUTTON
                 
-                Button(action:{}){
+                Button(action:{
+                    viewModel.login(withEmail: email, password: password)
+                }){
+                   
                     
                     Text("Sign In").fontWeight(.bold)
                         .foregroundColor(.white)

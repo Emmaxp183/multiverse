@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SettingsButtonView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     var body: some View {
-        Button(action:{}){
+        Button(action:{AuthViewModel.shared.signout()}){
             
             Text("Log Out").foregroundColor(.white).bold()
                 .frame(maxWidth: .infinity)
